@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using Gtk;
 using UI = Gtk.Builder.ObjectAttribute;
 
@@ -16,6 +17,15 @@ namespace csharp_ide
             builder.Autoconnect(this);
 
             DeleteEvent += Window_DeleteEvent;
+            this.KeyPressEvent  +=  Window_KeyPressEvent;
+        }
+
+        private void Window_KeyPressEvent(object sender, KeyPressEventArgs e)
+        {
+            if (e.Args.Any(x => (x as Gdk.EventKey).Key == Gdk.Key.F5))
+            {
+                Console.WriteLine("Building app...");
+            }
         }
 
         private void Window_DeleteEvent(object sender, DeleteEventArgs a)
