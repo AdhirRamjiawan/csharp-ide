@@ -10,6 +10,11 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Scripts\Linux\create-build-run-project.sh">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
     <PackageReference Include="GtkSharp" Version="3.24.24.*" />
   </ItemGroup>
 </Project>

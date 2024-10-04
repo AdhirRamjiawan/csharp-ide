@@ -1,5 +1,6 @@
 
 
+using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
 
@@ -11,7 +12,14 @@ public class AppBuilder
     {
         await Task.Run(() => 
         {
-            var startInfo = new ProcessStartInfo("dotnet", "build");
+            var startInfo = new ProcessStartInfo("Scripts/Linux/create-build-run-project.sh", "test test console");
+            startInfo.RedirectStandardError = true;
+
+            Console.WriteLine(startInfo.WorkingDirectory);
+
+            var process = Process.Start(startInfo);
+            process.ErrorDataReceived += (sender, args) => Console.WriteLine(args.Data);
+            process.OutputDataReceived += (sender, args) => Console.WriteLine(args.Data);
         });
     }
 }

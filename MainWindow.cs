@@ -20,11 +20,12 @@ namespace csharp_ide
             this.KeyPressEvent  +=  Window_KeyPressEvent;
         }
 
-        private void Window_KeyPressEvent(object sender, KeyPressEventArgs e)
+        private async void Window_KeyPressEvent(object sender, KeyPressEventArgs e)
         {
             if (e.Args.Any(x => (x as Gdk.EventKey).Key == Gdk.Key.F5))
             {
                 Console.WriteLine("Building app...");
+                await new AppBuilder().BuildAsync().ConfigureAwait(false);
             }
         }
 
